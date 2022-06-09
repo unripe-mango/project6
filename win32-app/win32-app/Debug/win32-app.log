@@ -1,0 +1,6 @@
+﻿  win32-app.cpp
+C:\Users\ASUS\source\Repos\win32-app\win32-app\win32-app.cpp(268,9): warning C4101: 'hdc': unreferenced local variable
+C:\Users\ASUS\source\Repos\win32-app\win32-app\win32-app.cpp(269,17): warning C4101: 'ps': unreferenced local variable
+C:\Users\ASUS\source\Repos\win32-app\win32-app\win32-app.cpp(303,9): warning C4101: 'hdc': unreferenced local variable
+C:\Users\ASUS\source\Repos\win32-app\win32-app\win32-app.cpp(304,17): warning C4101: 'ps': unreferenced local variable
+  win32-app.vcxproj -> C:\Users\ASUS\source\Repos\win32-app\Debug\win32-app.exe
