@@ -3,7 +3,10 @@
 
 #include "framework.h"
 #include "win32-app.h"
-#include "draw.cpp"
+#include "myClass.h"
+#include "Source.cpp"
+
+//#include "source.cpp"
 
 
 #define MAX_LOADSTRING 100
@@ -147,6 +150,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             // Parse the menu selections:
             switch (wmId)
             {
+            //Square - Rectangle - Circle - Semi-Circle - Ellipse - Polygon - Triangle - Line 
             case 551:
                 DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX1), hWnd, Input);
                 InvalidateRect(hWnd, NULL, TRUE);
@@ -342,6 +346,10 @@ void addMenu(HWND hwnd) {
     SetMenu(hwnd, hMenu);
 }
 
-void drawSquare() {
-
+void Circle::Draw(HDC hdc)
+{
+    //hpen = CreatePen(PS_SOLID, 2, RGB(140, 0, 0));
+    //SelectObject(hdc, hpen);
+    int x = O.getX(), y = O.getY();
+    Ellipse(hdc, x - R, y + R, R + x, y - R);
 }
