@@ -27,7 +27,7 @@
     <ClInclude Include="win32-app.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="myClass.h">
+    <ClInclude Include="my_project.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -35,7 +35,7 @@
     <ClCompile Include="win32-app.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source.cpp">
+    <ClCompile Include="my_project.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
