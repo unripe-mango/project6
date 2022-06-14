@@ -35,12 +35,16 @@ class myLine
 {
 public:
 	myPoint s, e;
-	float a = (s.getY() - e.getY()) / (s.getX() - e.getX());
-	float b = s.getY() - a * s.getX();
+
+	float a = (- s.getY() + e.getY()) / (s.getX() - e.getX());
+	float b = - s.getY() - a * s.getX();
+
 	myLine(float tx, float ty, float aa, float bb) {
+
 		//int a = 0, b = 0, c = 0;
 		s = myPoint(tx, ty);
 		e = myPoint(aa, bb);
+
 	};
 	//myLine(myPoint a, myPoint b);
 	//virtual bool isCutByLine(myPoint p);
@@ -158,6 +162,7 @@ public:
 	//myTriangle() {}
 	//myTriangle(myPoint p1, myPoint p2, myPoint p3);
 	//void setTriangle(p3);
+
 	myTriangle(float x1, float y1, float x2, float y2, float x3, float y3) {
 		p1 = myPoint(x1, y1);
 		p2 = myPoint(x2, y2);

@@ -39,14 +39,6 @@ HBRUSH hbrush;
 HPEN hpen;
 HPEN rpen;
 
-int c1 = 0, c2 = 0, c3 = 0;
-int r1 = 0, r2 = 0, r3 = 0, r4 = 0;
-int e1 = 0, e2 = 0, e3 = 0, e4 = 0;
-int s1 = 0, s2 = 0, s3 = 0, s4 = 0, s5 = 0;
-int l1 = 0, l2 = 0, l3 = 0, l4 = 0;
-int t1 = 0, t2 = 0, t3 = 0, t4 = 0, t5 = 0, t6 = 0;
-int p1;
-
 // Global Variables:
 HINSTANCE hInst;                                // current instance
 WCHAR szTitle[MAX_LOADSTRING];                  // The title bar text
@@ -313,6 +305,8 @@ INT_PTR CALLBACK Input_R(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
     case WM_COMMAND:
         if (LOWORD(wParam) == IDOK || LOWORD(wParam) == IDCANCEL)
         {
+            int r1 = 0, r2 = 0, r3 = 0, r4 = 0;
+            
             GetDlgItemText(hDlg, IDC_EDIT1, vl, sizeof(vl));
             r1 = _ttoi(vl);
             GetDlgItemText(hDlg, IDC_EDIT2, vt, sizeof(vt));
@@ -322,8 +316,10 @@ INT_PTR CALLBACK Input_R(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
             GetDlgItemText(hDlg, IDC_EDIT4, vb, sizeof(vb));
             r4 = _ttoi(vb);
 
-            myFigure* f = new myRectangle(r3, r4, r1, r2);
-            figure.push_back(f);
+            //if (r1 != NULL && r2 != NULL && r3 != NULL && r4 != NULL) {
+                myFigure* f = new myRectangle(r3, r4, r1, r2);
+                figure.push_back(f);
+            //}
 
             EndDialog(hDlg, LOWORD(wParam));
             return (INT_PTR)TRUE;
@@ -344,6 +340,8 @@ INT_PTR CALLBACK Input_C(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
     case WM_COMMAND:
         if (LOWORD(wParam) == IDOK || LOWORD(wParam) == IDCANCEL)
         {
+            int c1 = 0, c2 = 0, c3 = 0;
+
             GetDlgItemText(hDlg, IDC_EDIT1, vl, sizeof(vl));
             c1 = _ttoi(vl);
             //OutputDebugString(vl);
@@ -351,8 +349,12 @@ INT_PTR CALLBACK Input_C(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
             c2 = _ttoi(vt);
             GetDlgItemText(hDlg, IDC_EDIT3, vr, sizeof(vr));
             c3 = _ttoi(vr);
-            myFigure* f = new myCircle(c1, c2, c3);
-            figure.push_back(f);
+
+            //if (c1 != NULL && c2 != NULL && c3 != NULL) {
+                myFigure* f = new myCircle(c1, c2, c3);
+                figure.push_back(f);          
+            //}
+
             EndDialog(hDlg, LOWORD(wParam));
             return (INT_PTR)TRUE;
         }
@@ -372,6 +374,8 @@ INT_PTR CALLBACK Input_E(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
     case WM_COMMAND:
         if (LOWORD(wParam) == IDOK || LOWORD(wParam) == IDCANCEL)
         {
+            int e1 = 0, e2 = 0, e3 = 0, e4 = 0;
+
             GetDlgItemText(hDlg, IDC_EDIT1, vl, sizeof(vl));
             e1 = _ttoi(vl);
             //OutputDebugString(vl);
@@ -381,8 +385,12 @@ INT_PTR CALLBACK Input_E(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
             e3 = _ttoi(vr);
             GetDlgItemText(hDlg, IDC_EDIT4, vb, sizeof(vb));
             e4 = _ttoi(vb);
-            myFigure* f = new myEllipse(e1, e2, e3, e4);
-            figure.push_back(f);
+
+            //if (e1 != NULL && e2 != NULL && e3 != NULL && e4 != NULL) {
+                myFigure* f = new myEllipse(e1, e2, e3, e4);
+                figure.push_back(f);
+            //}
+
             EndDialog(hDlg, LOWORD(wParam));
             return (INT_PTR)TRUE;
         }
@@ -402,6 +410,8 @@ INT_PTR CALLBACK Input_S(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
     case WM_COMMAND:
         if (LOWORD(wParam) == IDOK || LOWORD(wParam) == IDCANCEL)
         {
+            int s1 = 0, s2 = 0, s3 = 0, s4 = 0, s5 = 0;
+
             GetDlgItemText(hDlg, IDC_EDIT1, vl, sizeof(vl));
             s1 = _ttoi(vl);
             //OutputDebugString(vl);
@@ -413,9 +423,12 @@ INT_PTR CALLBACK Input_S(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
             s4 = _ttoi(vb);
             GetDlgItemText(hDlg, IDC_EDIT5, vd, sizeof(vd));
             s5 = _ttoi(vd);
-            myFigure* f = new mySemiCircle(s1, s2, s3, s4, s5);
 
-            figure.push_back(f);
+            //if (s1 != NULL && s2 != NULL && s3 != NULL && s4 != NULL && s5 != NULL) {
+                myFigure* f = new mySemiCircle(s1, s2, s3, s4, s5);
+                figure.push_back(f);
+            //}
+
             EndDialog(hDlg, LOWORD(wParam));
             return (INT_PTR)TRUE;
         }
@@ -451,21 +464,27 @@ INT_PTR CALLBACK Input_P(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
     case WM_COMMAND:
         if (LOWORD(wParam) == IDOK || LOWORD(wParam) == IDCANCEL)
         {
-            vector<int> p2;
-            GetDlgItemText(hDlg, IDC_EDIT3, vl, sizeof(vl));
-            
-            wstring t(&vl[0]);
-            string s(t.begin(), t.end());
-            p2 = extractIntegerWords(s);
 
-            vector<myPoint> mp;
-            for (int i = 0; i < p2.size(); i += 2) {
-                myPoint p = myPoint(p2[i], p2[i + 1]);
-                mp.push_back(p);
-                cout << p.getX() << " " << p.getY();           
+            GetDlgItemText(hDlg, IDC_EDIT3, vl, sizeof(vl));
+
+            if (vl != L"") {
+                vector<int> p2;
+                wstring t(&vl[0]);
+                string s(t.begin(), t.end());
+                p2 = extractIntegerWords(s);
+
+                vector<myPoint> mp;
+
+                for (int i = 0; i < p2.size(); i += 2) {
+                    myPoint p = myPoint(p2[i], p2[i + 1]);
+                    mp.push_back(p);
+                    cout << p.getX() << " " << p.getY();
+                }
+
+                myFigure* f = new myPolygon(mp);
+                figure.push_back(f);
             }
-            myFigure* f = new myPolygon(mp);
-            figure.push_back(f);
+
             EndDialog(hDlg, LOWORD(wParam));
             return (INT_PTR)TRUE;
         }
@@ -485,6 +504,8 @@ INT_PTR CALLBACK Input_T(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
     case WM_COMMAND:
         if (LOWORD(wParam) == IDOK || LOWORD(wParam) == IDCANCEL)
         {
+            int t1 = 0, t2 = 0, t3 = 0, t4 = 0, t5 = 0, t6 = 0;
+
             GetDlgItemText(hDlg, IDC_EDIT1, vl, sizeof(vl));
             t1 = _ttoi(vl);
             //OutputDebugString(vl);
@@ -499,15 +520,11 @@ INT_PTR CALLBACK Input_T(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
             GetDlgItemText(hDlg, IDC_EDIT6, ve, sizeof(ve));
             t6 = _ttoi(ve);
 
-            OutputDebugString(vl);
-            OutputDebugString(vt);
-            OutputDebugString(vr);
-            OutputDebugString(vb);
-            OutputDebugString(vd);
-            OutputDebugString(ve);
+            //if (t1 != NULL && t2 != NULL && t3 != NULL && t4 != NULL && t5 != NULL && t6 != NULL) {
+                myFigure* f = new myTriangle(t1, t2, t3, t4, t5, t6);
+                figure.push_back(f);
+            //}
 
-            myFigure* f = new myTriangle(t1, t2, t3, t4, t5, t6);
-            figure.push_back(f);
             EndDialog(hDlg, LOWORD(wParam));
             return (INT_PTR)TRUE;
         }
@@ -527,9 +544,10 @@ INT_PTR CALLBACK Input_L(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
     case WM_COMMAND:
         if (LOWORD(wParam) == IDOK || LOWORD(wParam) == IDCANCEL)
         {
+            int l1 = 0, l2 = 0, l3 = 0, l4 = 0;
+
             GetDlgItemText(hDlg, IDC_EDIT7, vl, sizeof(vl));
             l1 = _ttoi(vl);
-            //OutputDebugString(vl);
             GetDlgItemText(hDlg, IDC_EDIT8, vt, sizeof(vt));
             l2 = _ttoi(vt);
             GetDlgItemText(hDlg, IDC_EDIT9, vr, sizeof(vr));
@@ -537,14 +555,8 @@ INT_PTR CALLBACK Input_L(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
             GetDlgItemText(hDlg, IDC_EDIT10, vb, sizeof(vb));
             l4 = _ttoi(vb);
 
-            OutputDebugString(vl);
-            OutputDebugString(vt);
-            OutputDebugString(vr);
-            OutputDebugString(vb);
-
             line = myLine(l1, l2, l3, l4);
-            //line.push_back(l);
-            //figure.push_back(f);
+
             EndDialog(hDlg, LOWORD(wParam));
             return (INT_PTR)TRUE;
         }

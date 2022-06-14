@@ -49,6 +49,7 @@ bool onSegment(myPoint p, myPoint q, myPoint r)
 // 0 --> p, q and r are colinear 
 // 1 --> Clockwise 
 // 2 --> Counterclockwise 
+
 int orientation(myPoint p, myPoint q, myPoint r)
 {
 	// for details of below formula. 
@@ -62,10 +63,13 @@ int orientation(myPoint p, myPoint q, myPoint r)
 
 // The main function that returns true if line segment 'p1q1' 
 // and 'p2q2' intersect. 
+
 bool doIntersect(myPoint p1, myPoint q1, myPoint p2, myPoint q2)
 {
+
 	// Find the four orientations needed for general and 
 	// special cases 
+
 	int o1 = orientation(p1, q1, p2);
 	int o2 = orientation(p1, q1, q2);
 	int o3 = orientation(p2, q2, p1);
@@ -101,11 +105,14 @@ void myCircle::Draw(HDC hdc)
 bool myCircle::isCutByLine(myLine L) {
 	double a = ( - L.s.getY() + L.e.getY()) / (L.s.getX() - L.e.getX());
 	double b = - L.s.getY() - a * L.s.getX();
+
 	float x = O.getX();
 	float y = - O.getY();
+
 	double a1 = a * a + 1;
 	double a2 = 2 * a * b - 2 * x - 2 * a * y;
 	double a3 = b * b + 2 * b * y + x * x + y * y - pow(R, 2);
+
 	if (giaiPT(a1, a2, a3) == 0) {
 		return false;
 	}
@@ -121,13 +128,23 @@ void myEllipse::Draw(HDC hdc)
 }
 
 bool myEllipse::isCutByLine(myLine L) {
+
 	double a = (-L.s.getY() + L.e.getY()) / (L.s.getX() - L.e.getX());
 	double b = -L.s.getY() - a * L.s.getX();
 
-	if (giaiPT(Rb * Rb + pow(Ra,2) * a * a, 2 * a * b * Ra * Ra, Ra * Ra * b * b - pow(Ra, 2) * pow(Rb, 2)) == 0) {
+	double d1 = pow(Rb, 2) + pow(Ra, 2) * pow(a, 2);
+	double d2 = -pow(Rb, 2) * 2 * Center.getX() + pow(Ra, 2) * 2 * a * b + pow(Ra, 2) * 2 * a * Center.getY();
+	double d3 = pow(Center.getX(), 2) * pow(Rb, 2) + pow(Ra, 2) * pow(b, 2) + pow(Ra, 2) * 2 * b * Center.getY() + pow(Ra, 2) * pow(Center.getY(), 2) - pow(Ra, 2) * pow(Rb, 2);
+
+	if (giaiPT(d1, d2, d3) == 0) {
 		return false;
 	}
 	else return true;
+
+	/*if (giaiPT( Rb * Rb + pow(Ra,2) * a * a, 2 * a * b * Ra * Ra, Ra * Ra * b * b - pow(Ra, 2) * pow(Rb, 2)) == 0) {
+		return false;
+	}
+	else return true;*/
 
 }
 
@@ -142,6 +159,7 @@ void mySemiCircle::Draw(HDC hdc)
 }
 
 bool mySemiCircle::isCutByLine(myLine L) {
+
 	double a = (-L.s.getY() + L.e.getY()) / (L.s.getX() - L.e.getX());
 	double b = -L.s.getY() - a * L.s.getX();
 
@@ -152,8 +170,15 @@ bool mySemiCircle::isCutByLine(myLine L) {
 		if (giaiPT(pow(a, 2) + 1, 2 * a * b - 2 * y * a + 2 * x, pow(b, 2) - 2 * y * b + pow(y, 2) - pow(R1, 2) - pow(x, 2)) == 0) {
 			return false;
 		}
+		else return true;
 	}
-	else return true;
+
+	if (Direct == 0) {
+		if (giaiPT(pow(a, 2) + 1, 2 * a * b + 2 * y * a + 2 * x, pow(b, 2) + 2 * y * b + pow(y, 2) - pow(R1, 2) - pow(x, 2)) == 0) {
+			return false;
+		}
+		else return true;
+	}
 }
 
 // Polygon
@@ -172,10 +197,13 @@ void myPolygon::Draw(HDC hdc)
 }
 
 bool myPolygon::isCutByLine(myLine L) {
+
 	int n = point.size();
+
 	if (doIntersect(L.s, L.e, point[n - 1], point[0])) {
 		return true;
 	}
+
 	for (int i = 0; i < n - 1; i++) {
 		if (doIntersect(L.s, L.e, point[i], point[i + 1])) {
 			return true;
@@ -193,26 +221,29 @@ void myRectangle::Draw(HDC hdc)
 }
 
 bool myRectangle::isCutByLine(myLine L) {
+
 	myPoint RLower = (RUpper.getX(), LLower.getY());
 	myPoint LUpper = (LLower.getX(), RUpper.getY());
+
 	if (doIntersect(L.s, L.e, LUpper, RUpper) || doIntersect(L.s, L.e, RUpper, RLower) || doIntersect(L.s, L.e, LLower, RLower) || doIntersect(L.s, L.e, LUpper, LLower)) {
 		return true;
 	}
 	else return false;
+
 }
 
 // Square
 
 void mySquare::Draw(HDC hdc)
 {
-	myPoint RLower = (RUpper.getX(), LLower.getY());
-	myPoint LUpper = (LLower.getX(), RUpper.getY());
 	Rectangle(hdc, LLower.getX(), LLower.getY(), RUpper.getX(), RUpper.getY());
 }
 
 bool mySquare::isCutByLine(myLine L) {
+
 	myPoint RLower = (RUpper.getX(), LLower.getY());
 	myPoint LUpper = (LLower.getX(), RUpper.getY());
+
 	if (doIntersect(L.s, L.e, LUpper, RUpper) || doIntersect(L.s, L.e, RUpper, RLower) || doIntersect(L.s, L.e, LLower, RLower) || doIntersect(L.s, L.e, LUpper, LLower)) {
 		return true;
 	}
