@@ -23,8 +23,8 @@ typedef std::ostringstream tstringstream;
 
 //VOID OnPaint(HDC hdc)
 //{
-//    Graphics graphics(hdc);
 //    Pen      pen(Color(255, 0, 0, 255));
+// tutorial/Screenshot 2022-06-24 003807.jpgtutorial/Screenshot 2022-06-24 003807.jpg
 //    graphics.DrawLine(&pen, 100, 100, 500, 500);
 //}
 
